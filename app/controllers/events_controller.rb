@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 before_action :set_event, only: [:show, :edit, :update]
 before_action :authenticate_user!, except: [:show]
 
+  #fetching all events for current user
   def index
       @events = current_user.events
     end
@@ -10,6 +11,7 @@ before_action :authenticate_user!, except: [:show]
     def show
     end
 
+    #building new event for current user using build method
     def new
       @event = current_user.events.build
     end
