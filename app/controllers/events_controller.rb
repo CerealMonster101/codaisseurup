@@ -1,5 +1,8 @@
 class EventsController < ApplicationController
 
+before_action :set_event, only: [:show, :edit, :update]
+before_action :authenticate_user!, except: [:show]
+
   def index
       @events = current_user.events
     end
@@ -30,6 +33,11 @@ class EventsController < ApplicationController
       else
         render :edit
       end
+    end
+
+    private
+    def set_event
+      @event = Event.find(params[:id])
     end
 
 end
