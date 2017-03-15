@@ -9,6 +9,7 @@ before_action :authenticate_user!, except: [:show]
     end
 
     def show
+      @categories = @event.categories
     end
 
     #building new event for current user using build method
@@ -40,6 +41,10 @@ before_action :authenticate_user!, except: [:show]
     private
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    def event_params
+      params.require(:event).permit(:name, :description, :location, :includes_food, :includes_drinks, :price, :starts_at, :ends_at, :capacity, :active, category_ids: [])
     end
 
 end

@@ -22,9 +22,12 @@
       <li> Start Time: <%= @event.starts_at %></li>
       <li> Ending Time: <%= @event.ends_at %></li>
 
-
     </ul>
 
+    <h4>Categories</h4>
+    <% @categories.each do |category| %>
+  <span class="label label-success"><%= category.name %></span>
+    <% end %>
   </div>
 
 </div>
