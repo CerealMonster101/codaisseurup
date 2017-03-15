@@ -7,6 +7,9 @@ RSpec.describe PagesController, type: :controller do
       get :home
       expect(response).to have_http_status(:success)
     end
+
+    def about
+    end
   end
 
 end

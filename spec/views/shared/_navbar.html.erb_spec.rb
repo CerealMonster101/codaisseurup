@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "shared/_navbar.html.erb" do
-  before { login_as user }
+  before { sign_in user }
 
   context "without profile" do
     let(:user) { create :user }

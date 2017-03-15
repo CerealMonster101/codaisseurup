@@ -5,6 +5,15 @@ class Event < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true, length: {maximum: 500}
   validates :location, presence: true
-  validates :starts_at, presence: true
-  validates :capacity, presence: true
+  validates :starts_at, presence: false
+  validates :capacity, presence: false
+  validates :price, presence: true
+
+  def bargain?
+     price < 30
+   end
+
+
+
+
 end
