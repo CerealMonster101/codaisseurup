@@ -10,6 +10,7 @@ before_action :authenticate_user!, except: [:show]
 
     def show
       @categories = @event.categories
+      @photos = @event.photos
     end
 
     #building new event for current user using build method
@@ -21,20 +22,30 @@ before_action :authenticate_user!, except: [:show]
       @event = current_user.events.build(event_params)
 
       if @event.save
-        redirect_to @event, notice: "Event successfully created"
+        image_params_each do |image|
+          @event.photos.create(image: image)
+        end
+
+        redirect_to_edit_event_path()@event), notice: "Event successfully created"
       else
         render :new
       end
     end
 
-    def edit
-    end
 
     def update
       if @event.update(event_params)
         redirect_to @event, notice: "Event successfully updated"
       else
         render :edit
+      end
+    end
+
+    def edit
+      if current_user.id == @room.user
+        @photos = @room.photos
+      else
+        redirect_to_root_path, notice: "You don't have permission."
       end
     end
 
@@ -45,6 +56,10 @@ before_action :authenticate_user!, except: [:show]
 
     def event_params
       params.require(:event).permit(:name, :description, :location, :includes_food, :includes_drinks, :price, :starts_at, :ends_at, :capacity, :active, category_ids: [])
+    end
+
+    def image_params
+      params[:images].present? ? params.require(:images) : []
     end
 
 end
