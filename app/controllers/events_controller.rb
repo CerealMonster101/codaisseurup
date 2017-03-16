@@ -18,7 +18,7 @@ before_action :authenticate_user!, except: [:show]
     end
 
     def create
-      @event = current_user.events.build(room_params)
+      @event = current_user.events.build(event_params)
 
       if @event.save
         redirect_to @event, notice: "Event successfully created"
@@ -31,7 +31,7 @@ before_action :authenticate_user!, except: [:show]
     end
 
     def update
-      if @event.update(room_params)
+      if @event.update(event_params)
         redirect_to @event, notice: "Event successfully updated"
       else
         render :edit
