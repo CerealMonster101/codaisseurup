@@ -4,7 +4,7 @@ FactoryGirl.define do
     location    { Faker::Address.city }
     description { Faker::Lorem.sentence(40)}
     price       { Faker::Commerce.price}
-    includes_food true
+    includes_food false
     includes_drinks false
     user        {build(:user)}
 
