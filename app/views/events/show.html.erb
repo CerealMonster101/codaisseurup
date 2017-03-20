@@ -1,5 +1,5 @@
 <div class="panel panel-primary">
-  <div class="panel-heading"><%= @event.name %></div>
+  <div class="panel-heading"><h1><%= @event.name %></h1></div>
 
   <div class="panel-body">
 
@@ -30,9 +30,13 @@
     <% end %>
 
     <h4>Photos</h4>
-    <% @photos.each do |photo| %>
-    <%= image_tag photo.image %>
-    <% end %>
+  <% @event.photos.each do |photo| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <%= image_tag photo.image.thumbnail %>
+    </div>
+  </div>
+  <% end %>
   </div>
 
 </div>

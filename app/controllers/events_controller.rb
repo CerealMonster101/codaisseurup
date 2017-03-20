@@ -4,14 +4,17 @@ before_action :set_event, only: [:show, :edit, :update]
 before_action :authenticate_user!, except: [:show]
 
   #fetching all events for current user
+  def show
+    @categories = @event.categories
+    @photos = @event.photos
+  end
+
+
   def index
       @events = current_user.events
     end
 
-    def show
-      @categories = @event.categories
-      @photos = @event.photos
-    end
+
 
     #building new event for current user using build method
     def new
@@ -26,7 +29,7 @@ before_action :authenticate_user!, except: [:show]
           @event.photos.create(image: image)
         end
 
-        redirect_to_edit_event_path()@event), notice: "Event successfully created"
+        redirect_to edit_event_path(@event), notice: "Event successfully created"
       else
         render :new
       end
@@ -42,10 +45,10 @@ before_action :authenticate_user!, except: [:show]
     end
 
     def edit
-      if current_user.id == @room.user
-        @photos = @room.photos
+      if current_user.id == @event.user.id
+        @photos = @event.photos
       else
-        redirect_to_root_path, notice: "You don't have permission."
+        redirect_to root_path, notice: "You don't have permission."
       end
     end
 

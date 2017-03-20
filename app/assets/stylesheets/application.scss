@@ -12,11 +12,20 @@ h1, h2 {
 
 }
 
-h3, h4 {
+h3 {
   font-family: "Lato", sans-serif;
   font-color: #2B9EB3;
   font-size: 35px;
+  font-weight: bold;
 }
+
+h4 {
+  font-family: "Lato", sans-serif;
+  font-color: #2B9EB3;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 
 p{
   font-family: "Lato", sans-serif;
@@ -26,11 +35,17 @@ p{
 
 body {
   background-color: #5F9EA0;
-    margin: auto;
+  margin: auto;
+  padding: 0 100px 20px;
 }
 
 li {
   font-family: "Lato", sans-serif;
   font-color: #2B9EB3;
-  font-size: 35px;
+  font-size: 20px;
+}
+
+navbar {
+
+
 }
