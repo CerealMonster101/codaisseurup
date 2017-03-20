@@ -12,6 +12,12 @@ Rails.application.routes.draw do
   resources :photos
   resources :events do
     resources :registrations, only: [:create]
+  end
+
+  namespace :api do
+    resources :events
+  end
+
 
 
 end

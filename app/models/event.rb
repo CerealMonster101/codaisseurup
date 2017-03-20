@@ -23,14 +23,12 @@ class Event < ApplicationRecord
 
   scope :published, -> {where(active: true)}
 
-  def self.during (start_date, end_date)
-      where 'starts_at < ? and ends_at > ?', start_date, end_date)
+  def self.during(start_date, end_date)
+      where('starts_at < ? and ends_at > ?', start_date, end_date)
   end
 
-  scope :starts_on_date, -> (start_date)
-    {where(starts_at: start_date)}
+  scope :starts_on_date, -> (start_date) {where(starts_at: start_date)}
 
-  scope :ends_on_date, -> (end_date)
-    {where (ends_at: end_date)}
+  scope :ends_on_date, -> (end_date) {where(ends_at: end_date)}
 
 end
